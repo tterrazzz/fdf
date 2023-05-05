@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: avan <avan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 17:52:36 by avan              #+#    #+#             */
-/*   Updated: 2023/04/28 17:52:39 by avan             ###   ########.fr       */
+/*   Created: 2023/05/05 13:20:58 by avan              #+#    #+#             */
+/*   Updated: 2023/05/05 13:21:18 by avan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <math.h>
 # include "mlx.h"
 # define BUFFER_SIZE 1000
-# define SIZE_X 1000
-# define SIZE_Y 1000
+# define SIZE_X 1920
+# define SIZE_Y 1080
 
 typedef struct s_map_elem
 {
@@ -37,6 +37,8 @@ typedef struct s_struct
 	t_map_elem	**map;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	void		*img;
+	char		*img_addr;
 	float		scale;
 	float		height;
 	float		angle1;
@@ -58,11 +60,15 @@ typedef struct s_struct
 	int			y_temp;
 	int			verif_x;
 	int			lines_malloc;
+	int			img_bits_per_pixel;
+	int			img_line_length;
+	int			img_endian;
 }				t_struct;
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
+void	ft_mlx_pixel_put(t_struct *s, int x, int y, int color);
 char	**ft_split(char const *s, int *nb);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);

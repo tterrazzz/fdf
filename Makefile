@@ -15,6 +15,7 @@ UTL =	$(addprefix $(UTL_DIR)/, $(UTL_FILES))
 
 SRC_DIR =	./srcs
 SRC_FILES =	main.c \
+			ft_mlx_pixel_put.c \
 			ft_line_splited_words.c \
 			ft_open_window.c \
 			ft_calculation.c \
@@ -49,6 +50,7 @@ BON_FILES =	main_bonus.c \
 			ft_bresenham_line_bonus.c \
 			ft_free_struct_bonus.c \
 			ft_map_init_bonus.c \
+			ft_mlx_pixel_put_bonus.c \
 			ft_struct_init_bonus.c
 BONUS =	$(UTL_BONUS) $(addprefix $(BON_DIR)/, $(BON_FILES))
 

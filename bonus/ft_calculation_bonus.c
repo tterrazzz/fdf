@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: avan <avan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 17:52:03 by avan              #+#    #+#             */
-/*   Updated: 2023/04/28 17:52:04 by avan             ###   ########.fr       */
+/*   Created: 2023/05/05 13:22:22 by avan              #+#    #+#             */
+/*   Updated: 2023/05/05 13:22:26 by avan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,5 @@ void	ft_calculation(t_struct *s)
 		y += 1;
 	}
 	ft_iso_map_display(s);
+	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, s->img, 0, 0);
 }

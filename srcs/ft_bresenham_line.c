@@ -6,7 +6,7 @@
 /*   By: avan <avan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 17:35:37 by avan              #+#    #+#             */
-/*   Updated: 2023/04/28 17:35:39 by avan             ###   ########.fr       */
+/*   Updated: 2023/05/05 13:03:54 by avan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	ft_dx_bigger_crementation(t_struct *s, int direction)
 
 static void	ft_dx_bigger(t_struct *s, int color)
 {
+	(void) color;
 	if (!s)
 		return ;
 	s->x_temp = s->x1;
@@ -34,9 +35,9 @@ static void	ft_dx_bigger(t_struct *s, int color)
 		s->dy = s->y2 - s->y1;
 	s->dx = s->x2 - s->x1;
 	s->p = 2 * s->dy - s->dx;
-	while (s->x_temp <= s->x2)
+	while (s->x_temp <= s->x2 && s->x_temp < 1920)
 	{
-		mlx_pixel_put(s->mlx_ptr, s->win_ptr, s->x_temp, s->y_temp, color);
+		ft_mlx_pixel_put(s, s->x_temp, s->y_temp, color);
 		s->x_temp += 1;
 		if (s->p < 0)
 			s->p += 2 * s->dy;
@@ -50,11 +51,12 @@ static void	ft_dx_bigger(t_struct *s, int color)
 
 static void	ft_acute_up(t_struct *s, int color)
 {
+	(void) color;
 	if (!s)
 		return ;
-	while (s->y_temp > s->y2)
+	while (s->y_temp > s->y2 && s->y_temp < 1080)
 	{
-		mlx_pixel_put(s->mlx_ptr, s->win_ptr, s->x_temp, s->y_temp, color);
+		ft_mlx_pixel_put(s, s->x_temp, s->y_temp, color);
 		s->y_temp -= 1;
 		if (s->p < 0)
 			s->p += 2 * s->dx;
@@ -68,6 +70,7 @@ static void	ft_acute_up(t_struct *s, int color)
 
 static void	ft_dy_bigger(t_struct *s, int color)
 {
+	(void) color;
 	if (!s)
 		return ;
 	s->x_temp = s->x1;
@@ -80,9 +83,9 @@ static void	ft_dy_bigger(t_struct *s, int color)
 	s->p = 2 * s->dx - s->dy;
 	if (s->y_temp > s->y2)
 		ft_acute_up(s, color);
-	while (s->y_temp <= s->y2)
+	while (s->y_temp <= s->y2 && s->y_temp < 1080)
 	{
-		mlx_pixel_put(s->mlx_ptr, s->win_ptr, s->x_temp, s->y_temp, color);
+		ft_mlx_pixel_put(s, s->x_temp, s->y_temp, color);
 		s->y_temp += 1;
 		if (s->p < 0)
 			s->p += 2 * s->dx;

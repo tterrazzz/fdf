@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map_init_bonus.c                                :+:      :+:    :+:   */
+/*   ft_mlx_pixel_put.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avan <avan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/05 13:24:11 by avan              #+#    #+#             */
-/*   Updated: 2023/05/05 13:24:13 by avan             ###   ########.fr       */
+/*   Created: 2023/05/04 15:38:59 by avan              #+#    #+#             */
+/*   Updated: 2023/05/05 13:08:11 by avan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "fdf.h"
 
-void	ft_map_init(t_struct *s, int nbr_word, char **lines_verif)
+void	ft_mlx_pixel_put(t_struct *s, int x, int y, int color)
 {
-	int	color;
+	char	*dst;
 
-	if (!s)
-		return ;
-	color = 0;
-	while (++(s->x) < nbr_word)
+	if (x >= 0 && x < 1920 && y >= 0 && y < 1080)
 	{
-		s->map[s->y][s->x].z = ft_atoi(lines_verif[s->x]);
-		color = ft_color_check(s, lines_verif[s->x]);
-		if (color != 0)
-			s->map[s->y][s->x].color = color;
-		else
-			s->map[s->y][s->x].color = 16777215;
-		color = 0;
+		dst = s->img_addr + (y * s->img_line_length + x
+				* (s->img_bits_per_pixel / 8));
+		*(unsigned int *)dst = color;
 	}
 }
