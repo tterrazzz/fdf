@@ -6,7 +6,7 @@
 /*   By: avan <avan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:32:11 by avan              #+#    #+#             */
-/*   Updated: 2023/05/04 17:21:32 by avan             ###   ########.fr       */
+/*   Updated: 2023/05/09 15:31:13 by avan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@
 # define SIZE_X 1920
 # define SIZE_Y 1080
 
+typedef struct s_map_check
+{
+	int	up_y;
+	int	right_x;
+	int	down_y;
+	int	left_x;
+}		t_map_check;
+
 typedef struct s_map_elem
 {
 	int	z;
@@ -35,6 +43,7 @@ typedef struct s_map_elem
 typedef struct s_struct
 {
 	t_map_elem	**map;
+	t_map_check	*map_check;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img;
@@ -82,12 +91,16 @@ void	ft_bad_map_exit(t_struct *s, char **line_verif, int nbr_word);
 void	ft_bad_map_free_struct(t_struct *s, char **line_verif, int nbr_word);
 void	ft_bresenham_line(t_struct *s, int color);
 void	ft_calculation(t_struct *s);
+void	ft_pre_calculation(t_struct *s);
+int		ft_check_value(t_struct *s);
 int		ft_color_check(t_struct *s, char *str);
 void	ft_free_parsing(char **tab, int nbr_word);
 void	ft_free_ptr(void **ptr);
 void	ft_free_struct(t_struct *s);
+void	ft_get_big_or_lowest(t_struct *s, int y, int x);
 char	**ft_line_splited_words(int *nbr_word, int fd, t_struct *s);
 void	ft_map_init(t_struct *s, int nbr_word, char **lines_verif);
+void	ft_map_check_init(t_struct *s);
 void	ft_open_window(t_struct *s);
 void	ft_struct_init(t_struct *s);
 

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: avan <avan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/05 13:25:20 by avan              #+#    #+#             */
-/*   Updated: 2023/05/05 13:25:20 by avan             ###   ########.fr       */
+/*   Created: 2023/05/09 15:40:24 by avan              #+#    #+#             */
+/*   Updated: 2023/05/09 15:40:24 by avan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_open_window(t_struct *s)
 	s->img = mlx_new_image(s->mlx_ptr, 1920, 1080);
 	s->img_addr = mlx_get_data_addr(s->img, &(s->img_bits_per_pixel),
 			&(s->img_line_length), &(s->img_endian));
-	ft_calculation(s);
+	ft_pre_calculation(s);
 	mlx_hook(s->win_ptr, 2, 0, ft_key_hook, s);
 	mlx_hook(s->win_ptr, 17, 0, ft_close_program, s);
 	mlx_loop(s->mlx_ptr);

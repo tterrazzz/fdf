@@ -19,6 +19,8 @@ SRC_FILES =	main.c \
 			ft_line_splited_words.c \
 			ft_open_window.c \
 			ft_calculation.c \
+			ft_check_value.c \
+			ft_pre_calculation.c \
 			ft_color_check.c \
 			ft_bresenham_line.c \
 			ft_free_struct.c \
@@ -46,6 +48,8 @@ BON_FILES =	main_bonus.c \
 			ft_line_splited_words_bonus.c \
 			ft_open_window_bonus.c \
 			ft_calculation_bonus.c \
+			ft_pre_calculation_bonus.c \
+			ft_check_value_bonus.c \
 			ft_color_check_bonus.c \
 			ft_bresenham_line_bonus.c \
 			ft_free_struct_bonus.c \

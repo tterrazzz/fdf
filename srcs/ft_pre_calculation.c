@@ -1,16 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calculation_bonus.c                             :+:      :+:    :+:   */
+/*   ft_pre_calculation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avan <avan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 15:37:30 by avan              #+#    #+#             */
-/*   Updated: 2023/05/09 15:37:34 by avan             ###   ########.fr       */
+/*   Created: 2023/05/05 18:00:38 by avan              #+#    #+#             */
+/*   Updated: 2023/05/09 15:33:48 by avan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf_bonus.h"
+#include "fdf.h"
+
+void	ft_get_xmov_ymov(t_struct *s)
+{
+	int	x;
+	int	y;
+	int	iso_x;
+	int	iso_y;
+
+	if (!s)
+		return ;
+	x = s->length / 2;
+	y = s->lines / 2;
+	iso_x = (x - y) * cos(s->angle1) * s->scale;
+	iso_y = (x + y) * cos(s->angle2) * s->scale;
+	s->x_mov = (1920 / 2) - iso_x;
+	s->y_mov = (1080 / 2) - iso_y;
+}
 
 static void	ft_a_to_b_pts_drawing(t_struct *s, int *y, int *x)
 {
@@ -60,9 +77,10 @@ static void	ft_iso_map_display(t_struct *s)
 		x = 0;
 		y--;
 	}
+	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, s->img, 0, 0);
 }
 
-void	ft_calculation(t_struct *s)
+void	ft_pre_calculation(t_struct *s)
 {
 	int	x;
 	int	y;
@@ -71,6 +89,7 @@ void	ft_calculation(t_struct *s)
 		return ;
 	x = 0;
 	y = 0;
+	ft_get_xmov_ymov(s);
 	while (y < s->lines)
 	{
 		while (x < s->length)
@@ -79,11 +98,13 @@ void	ft_calculation(t_struct *s)
 				+ s->x_mov;
 			s->map[y][x].iso_y = ((-(s->map[y][x].z * s->height) + (y + x)
 						* cos(s->angle2)) * s->scale) + s->y_mov;
+			ft_get_big_or_lowest(s, s->map[y][x].iso_y, s->map[y][x].iso_x);
 			x += 1;
 		}
 		x = 0;
 		y += 1;
 	}
+	if (ft_check_value(s) > 1)
+		return (ft_pre_calculation(s));
 	ft_iso_map_display(s);
-	mlx_put_image_to_window(s->mlx_ptr, s->win_ptr, s->img, 0, 0);
 }
