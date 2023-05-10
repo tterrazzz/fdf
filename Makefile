@@ -6,7 +6,7 @@
 #    By: avan <avan@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 15:30:22 by avan              #+#    #+#              #
-#    Updated: 2023/05/10 17:18:16 by avan             ###   ########.fr        #
+#    Updated: 2023/05/10 17:23:17 by avan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,7 @@ $(OBJ_DIR)/$(UTL_DIR)/%.o: $(UTL_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BONUS_NAME): $(OBJ_BONUS)
-	@echo "Compiling Executable"
+	@echo "Compiling Bonus Executable"
 	$(CC) $(CFLAGS) -O3 -lmlx -framework OpenGL -framework AppKit -o $(BONUS_NAME) $(OBJ_BONUS)
 
 $(OBJ_BONUS_DIR)/%.o: $(BON_DIR)/%.c
