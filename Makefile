@@ -1,5 +1,24 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: avan <avan@student.42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/10 15:30:22 by avan              #+#    #+#              #
+#    Updated: 2023/05/10 17:18:16 by avan             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+CC = @gcc
+CFLAGS = -Wall -Wextra -Werror
+RM = @rm -f
+NAME = fdf
+BONUS_NAME = fdf_bonus
+
 UTL_DIR =	utils
-UTL_FILES =	ft_atoi.c \
+UTL_FILES =	\
+			ft_atoi.c \
 			ft_bzero.c \
 			ft_memset.c \
 			ft_split.c \
@@ -14,7 +33,8 @@ UTL_FILES =	ft_atoi.c \
 UTL =	$(addprefix $(UTL_DIR)/, $(UTL_FILES))
 
 SRC_DIR =	./srcs
-SRC_FILES =	main.c \
+SRC_FILES =	\
+			main.c \
 			ft_mlx_pixel_put.c \
 			ft_line_splited_words.c \
 			ft_open_window.c \
@@ -29,7 +49,8 @@ SRC_FILES =	main.c \
 SRC =	$(UTL) $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
 UTL_BONUS_DIR =		utils/bonus
-UTL_BONUS_FILES =	ft_atoi_bonus.c \
+UTL_BONUS_FILES =	\
+					ft_atoi_bonus.c \
 					ft_bzero_bonus.c \
 					ft_memset_bonus.c \
 					ft_split_bonus.c \
@@ -44,7 +65,8 @@ UTL_BONUS_FILES =	ft_atoi_bonus.c \
 UTL_BONUS =	$(addprefix $(UTL_BONUS_DIR)/, $(UTL_BONUS_FILES))
 
 BON_DIR =	./bonus
-BON_FILES =	main_bonus.c \
+BON_FILES =	\
+			main_bonus.c \
 			ft_line_splited_words_bonus.c \
 			ft_open_window_bonus.c \
 			ft_calculation_bonus.c \
@@ -64,18 +86,13 @@ OBJ =	$(addprefix $(OBJ_DIR)/, $(UTL:.c=.o)) $(addprefix $(OBJ_DIR)/, $(SRC_FILE
 OBJ_BONUS_DIR = ./objs/bonus
 OBJ_BONUS =	$(addprefix $(OBJ_BONUS_DIR)/utils/, $(UTL_BONUS_FILES:.c=.o)) $(addprefix $(OBJ_BONUS_DIR)/, $(BON_FILES:.c=.o))
 
-NAME = fdf
-
-BONUS_NAME = fdf_bonus
-
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 bonus: $(BONUS_NAME)
 
 $(NAME): $(OBJ)
+	@echo "Compiling Executable"
 	$(CC) $(CFLAGS) -O3 -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJ)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -85,6 +102,7 @@ $(OBJ_DIR)/$(UTL_DIR)/%.o: $(UTL_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BONUS_NAME): $(OBJ_BONUS)
+	@echo "Compiling Executable"
 	$(CC) $(CFLAGS) -O3 -lmlx -framework OpenGL -framework AppKit -o $(BONUS_NAME) $(OBJ_BONUS)
 
 $(OBJ_BONUS_DIR)/%.o: $(BON_DIR)/%.c
@@ -94,16 +112,20 @@ $(OBJ_BONUS_DIR)/utils/%.o: $(UTL_BONUS_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	@echo "Removing Objects"
+	$(RM) $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@echo "Removing Executable"
+	$(RM) $(NAME)
 
 clean_bonus:
-	rm -f $(OBJ_BONUS)
+	@echo "Removing Bonus Objects"
+	$(RM) $(OBJ_BONUS)
 
 fclean_bonus: clean_bonus
-	rm -f $(BONUS_NAME)
+	@echo "Removing Bonus Executable"
+	$(RM) $(BONUS_NAME)
 
 re: fclean all
 
