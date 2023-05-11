@@ -6,7 +6,7 @@
 /*   By: avan <avan@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:40:39 by avan              #+#    #+#             */
-/*   Updated: 2023/04/28 17:51:12 by avan             ###   ########.fr       */
+/*   Updated: 2023/05/11 17:09:07 by avan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	ft_bad_map_free_struct(t_struct *s, char **line_verif, int nbr_word)
 	}
 	ft_free_parsing(line_verif, nbr_word);
 	ft_free_ptr((void **) &(s->map));
+	ft_free_ptr((void **) &(s->map_check));
 	ft_free_ptr((void **) &s);
 }
 
@@ -66,5 +67,6 @@ void	ft_free_struct(t_struct *s)
 		i++;
 	}
 	ft_free_ptr((void **) &(s->map));
+	ft_free_ptr((void **) &(s->map_check));
 	ft_free_ptr((void **) &s);
 }
